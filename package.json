@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "PuppeDo": "P:\\DEV\\PuppeDo",
     "express": "^4.16.4",
     "express-ws": "^4.0.0",
-    "PuppeDo": "file:../PuppeDo"
+    "lodash": "^4.17.11"
   }
 }

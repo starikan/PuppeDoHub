@@ -1,0 +1,73 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(100px, auto) 1fr minmax(100px, auto);
+  grid-template-areas:
+    "header header header"
+    "testLists testFlow testDetails"
+    "footer footer footer";
+  grid-auto-rows: minmax(30px, auto) 1fr minmax(30px, auto);
+}
+
+.header {
+  grid-area: header;
+  background-color: rgb(144, 122, 122);
+  /* grid-column: 1 / 4; */
+  /* grid-auto-rows: 1; */
+}
+
+.footer {
+  grid-area: footer;
+  background-color: rgb(42, 165, 69);
+  /* grid-column: 1 / 4; */
+  /* grid-auto-rows: 1; */
+}
+
+.testLists {
+  grid-area: testLists;
+  background-color: aquamarine;
+  /* grid-column: 1; */
+  /* grid-auto-rows: 2 / 3; */
+}
+
+.testData {
+  grid-area: testData;
+  background-color: rgb(147, 165, 42);
+  /* grid-column: 2; */
+  /* grid-auto-rows: 2; */
+}
+
+.testFlow {
+  grid-area: testFlow;
+  background-color: rgb(165, 42, 155);
+  /* grid-column: 2; */
+  /* grid-auto-rows: 3; */
+}
+
+.testDetails {
+  grid-area: testDetails;
+  background-color: rgb(42, 85, 165);
+  /* grid-column: 2; */
+  /* grid-auto-rows: 3; */
+}
+
+.compiledData {
+  grid-area: compiledData;
+  background-color: rgb(165, 147, 42);
+  /* grid-column: 3; */
+  /* grid-auto-rows: 2; */
+}
+
+.compiledSelectors {
+  grid-area: compiledSelectors;
+  background-color: rgb(152, 195, 190);
+  /* grid-column: 3; */
+  /* grid-auto-rows: 3; */
+}

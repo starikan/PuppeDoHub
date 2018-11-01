@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="sockets.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">HEADER</div>
+
+    <div class="testLists">
+      TEST LISTS
+      <button onclick="init_test()">Старт теста</button>
+      <button onclick="get_json()">Получить тесты</button>
+    </div>
+    <!-- <div class="testData">TEST DATA</div> -->
+    <div class="testFlow">
+      TEST FLOW
+      <button onclick="init_test()">Инициировать тест</button>
+      <button onclick="get_test()">Получить данные теста</button>
+    </div>
+    <div class="testDetails">
+      <div class="compiledData">COMPILED DATA</div>
+      <div class="compiledSelectors">COMPILED SELECTORS</div>
+    </div>
+
+    <div class="footer">FOOTER</div>
+  </div>
+  <!-- <input type="text"/> -->
+  <!-- <button onclick="init_test()">Старт теста</button>
+  <button onclick="get_json()">Получить JSON</button> -->
+  <!-- <button onclick="init_test2()">Старт теста2</button> -->
+  <!-- <button onclick="stop_test()">Стоп теста</button>
+  <button onclick="stop_test2()">Стоп теста2</button> -->
+</body>
+
+</html>
