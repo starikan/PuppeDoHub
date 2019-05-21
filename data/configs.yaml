@@ -1,0 +1,33 @@
+---
+main:
+  name: main
+  ppd_config:
+    output: 'output'
+    envs: 'envElectron'
+    testsFolder: '.'
+    envsExt: ''
+    envsExtJson: ''
+    data: ''
+    selectors: ''
+    debugMode: 'true'
+    logDisabled: ''
+    testsList: ''
+    test: 'cashdesk'
+    dataExt: ''
+    selectorsExt: ''
+electron:
+  name: electron
+  ppd_config:
+    output: 'output'
+    envs: ["settings/envElectron.yaml"]
+    testsFolder: '../PuppeDo_tests'
+    envsExt: ''
+    envsExtJson: 'privateData/envElectronRunExt.json'
+    data: ''
+    selectors: ''
+    debugMode: true
+    logDisabled: ''
+    testsList: ''
+    test: 'mainLeftMenu'
+    dataExt: ["privateData/auth.yaml"]
+    selectorsExt: ''

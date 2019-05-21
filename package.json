@@ -9,10 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "PuppeDo": "P:\\DEV\\PuppeDo",
-    "circular-json": "^0.5.9",
-    "express": "^4.16.4",
-    "express-ws": "^4.0.0",
-    "lodash": "^4.17.11"
+    "PuppeDo": "file:P:/DEV/PuppeDo",
+    "express": "4.16.4",
+    "lodash": "4.17.11",
+    "ws": "6.1.0"
   }
 }
