@@ -20,7 +20,7 @@ electron:
   ppd_config:
     output: 'output'
     envs: ["settings/envElectron.yaml"]
-    testsFolder: '../PuppeDo_tests'
+    testsFolder: 'P:\DEV\PuppeDo_tests'
     envsExt: ''
     envsExtJson: 'privateData/envElectronRunExt.json'
     data: ''

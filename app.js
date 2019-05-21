@@ -18,16 +18,13 @@ let eventsOn = {
   //   const tests = await getTestsFiles();
   //   this.emit(tests);
   // },
-  run_test: async ({
-    payload,
-    envsId,
-    socket
-  }) => {
-    debugger
+  run_test: async ({ payload, envsId, socket }) => {
     await puppedo.main(payload, socket);
-    socket.send(JSON.stringify({
-      message: "Done"
-    }))
+    socket.send(
+      JSON.stringify({
+        message: 'Done',
+      }),
+    );
   },
   // init_test: async ({
   //   payload,
@@ -111,7 +108,6 @@ let eventsOn = {
   //   console.log(err)
   // }
 
-
   // try {
   //   console.log('get_json', this);
   //   let envs = _.get(this, "ppd.envs");
@@ -125,7 +121,7 @@ let eventsOn = {
   //   console.log(err)
   // }
   // }
-}
+};
 
 function runWsServer() {
   const app = express();
@@ -134,12 +130,14 @@ function runWsServer() {
   app.use(express.static(__dirname + '/'));
 
   const wss = new WebSocket.Server({
-    port: 3001
+    port: 3001,
   });
 
-  wss.getUniqueID = function () {
+  wss.getUniqueID = function() {
     function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
     }
     return s4() + s4() + '-' + s4();
   };
@@ -149,22 +147,25 @@ function runWsServer() {
 
     ws.id = wss.getUniqueID();
 
-    ws.onmessage = async function (event) {
+    ws.onmessage = async function(event) {
       const incomeData = JSON.parse(event.data);
       const envsId = _.get(incomeData, 'envsId');
       const payload = _.get(incomeData, 'payload');
       const funcOn = _.get(eventsOn, _.get(incomeData, 'message'));
+      this.sendJSON = function(data) {
+        return this.send.call(this, JSON.stringify(data));
+      };
       if (funcOn) {
         await funcOn({
           envsId,
           payload,
-          socket: this
+          socket: this,
         });
       }
     };
 
     ws.onclose = () => {
-      console.log('Close')
+      console.log('Close');
     };
     ws.onerror = () => {};
     ws.onopen = () => {};
@@ -186,7 +187,6 @@ function runWsServer() {
     res.sendFile(path.join(__dirname, 'index.html'));
     // res.json(allClients);
     // console.log(app.listeners())
-
   });
 
   app.listen(3002, () => console.log('listening on http://localhost:3002/'));
@@ -196,6 +196,6 @@ if (!module.parent) {
   runWsServer();
 } else {
   module.exports = {
-    runWsServer
+    runWsServer,
   };
 }
