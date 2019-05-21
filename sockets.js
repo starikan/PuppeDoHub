@@ -37,12 +37,6 @@ let app = new Vue({
       if (config) {
         this.currConfig = config;
       }
-      // _.forEach(this.configs, (val, key) => {
-      //   if (key === name) {
-      //     Vue.set(this.configs[key], 'isConnected', true);
-      //     Vue.set(this.configs[key], 'socket', this.startSocket());
-      //   }
-      // });
     },
     onMessageSocket: function(event) {
       let data = jsyaml.load(event.data);
@@ -80,44 +74,3 @@ let app = new Vue({
     },
   },
 });
-
-// const sockets = [];
-// const socket_connect = function() {
-//   let socket = new WebSocket(`ws://127.0.0.1:3001/`);
-//   socket.onerror = m => console.log(m, 'error');
-//   socket.onopen = m => console.log(m, 'websocket connection open');
-//   socket.onmessage = event => {
-//     let data = JSON.parse(event.data);
-//     console.log(data);
-//   };
-//   console.log('Socket create', socket);
-
-//   sockets.push(socket);
-// };
-
-// socket_connect();
-
-const getConfigs = () => {
-  return [];
-};
-
-// const init_test = () => {
-//   console.log('Start test');
-//   sockets[0].send(
-//     JSON.stringify({
-//       message: 'init_test',
-//       payload: {
-//         // envsId,
-//         test: 'testGlob',
-//         testsFolder: 'settings',
-//         envs: ['settings/envCloud.yaml'],
-//       },
-//     }),
-//   );
-// };
-
-// const getAllSockets = async () => {
-//   let response = await fetch(`http://127.0.0.1:3002/`, { method: 'GET' });
-//   let data = await response.json();
-//   console.log(data);
-// };
