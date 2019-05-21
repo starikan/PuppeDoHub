@@ -74,7 +74,7 @@ let app = new Vue({
       );
     },
 
-    fetchAllTests: function(config){
+    fetchStruct: function(config) {
       //TODO: 2019-05-20 S.Starodubov ошибку кинуть
       if (!config.socket) {
         console.log('Run socket connection first');
@@ -82,10 +82,23 @@ let app = new Vue({
       }
       config.socket.send(
         JSON.stringify({
-          message: 'fetch_all_tests',
+          message: 'fetch_struct',
           args: config.ppd_config,
         }),
       );
-    }
+    },
+    fetchAvailableTests: function(config) {
+      //TODO: 2019-05-20 S.Starodubov ошибку кинуть
+      if (!config.socket) {
+        console.log('Run socket connection first');
+        return;
+      }
+      config.socket.send(
+        JSON.stringify({
+          message: 'fetch_available_tests',
+          args: config.ppd_config,
+        }),
+      );
+    },
   },
 });

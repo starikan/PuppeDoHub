@@ -9,8 +9,11 @@ let eventsOn = {
   run_test: async ({ args, socket }) => {
     await ppd.main(args, socket);
   },
-  fetch_all_tests: async ({ args, socket }) => {
-    await ppd.fetchTests(args, socket);
+  fetch_struct: async ({ args, socket }) => {
+    await ppd.fetchStruct(args, socket);
+  },
+  fetch_available_tests: async ({ args, socket }) => {
+    await ppd.fetchAvailableTests(args, socket);
   },
 };
 
