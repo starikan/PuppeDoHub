@@ -4,6 +4,7 @@ const puppedo = require('PuppeDo');
 // const path = require('path');
 const WebSocket = require('ws');
 var express = require('express');
+const yaml = require('js-yaml');
 
 // let instances = {};
 
@@ -152,8 +153,8 @@ function runWsServer() {
       const envsId = _.get(incomeData, 'envsId');
       const payload = _.get(incomeData, 'payload');
       const funcOn = _.get(eventsOn, _.get(incomeData, 'message'));
-      this.sendJSON = function(data) {
-        return this.send.call(this, JSON.stringify(data));
+      this.sendYAML = function(data) {
+        return this.send.call(this, yaml.dump(data, { lineWidth: 1000, indent: 2 }));
       };
       if (funcOn) {
         await funcOn({

@@ -45,8 +45,7 @@ let app = new Vue({
       // });
     },
     onMessageSocket: function(event) {
-      debugger;
-      let data = JSON.parse(event.data);
+      let data = jsyaml.load(event.data);
       console.log(data);
     },
     onOpenSocket: function(event) {
