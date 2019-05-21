@@ -59,6 +59,7 @@ let app = new Vue({
       socket.onclose = this.onCloseSocket;
       return socket;
     },
+
     runTest: function(config) {
       //TODO: 2019-05-20 S.Starodubov ошибку кинуть
       if (!config.socket) {
@@ -68,9 +69,23 @@ let app = new Vue({
       config.socket.send(
         JSON.stringify({
           message: 'run_test',
-          payload: config.ppd_config,
+          args: config.ppd_config,
         }),
       );
     },
+
+    fetchAllTests: function(config){
+      //TODO: 2019-05-20 S.Starodubov ошибку кинуть
+      if (!config.socket) {
+        console.log('Run socket connection first');
+        return;
+      }
+      config.socket.send(
+        JSON.stringify({
+          message: 'fetch_all_tests',
+          args: config.ppd_config,
+        }),
+      );
+    }
   },
 });

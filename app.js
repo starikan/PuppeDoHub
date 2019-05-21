@@ -1,19 +1,27 @@
-const _ = require('lodash');
 const ppd = require('PuppeDo');
+
+const _ = require('lodash');
 const WebSocket = require('ws');
 var express = require('express');
 const yaml = require('js-yaml');
 
 let eventsOn = {
-  run_test: async ({ payload, socket }) => {
-    await ppd.main(payload, socket);
+  run_test: async ({ args, socket }) => {
+    await ppd.main(args, socket);
   },
-  get_all_tests: async data => {},
+  fetch_all_tests: async ({ args, socket }) => {
+    await ppd.fetchTests(args, socket);
+  },
 };
 
 function runWsServer() {
   const app = express();
   app.use(express.static(__dirname + '/'));
+  app.get('/', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+  app.listen(3002, () => console.log('listening on http://localhost:3002/'));
 
   const wss = new WebSocket.Server({ port: 3001 });
   wss.getUniqueID = function() {
@@ -33,12 +41,14 @@ function runWsServer() {
     ws.onmessage = async function(event) {
       const incomeData = JSON.parse(event.data);
       const envsId = _.get(incomeData, 'envsId');
-      const payload = _.get(incomeData, 'payload');
+      const args = _.get(incomeData, 'args');
+      const params = _.get(incomeData, 'params');
       const funcOn = _.get(eventsOn, _.get(incomeData, 'message'));
       if (funcOn) {
         await funcOn({
           envsId,
-          payload,
+          args,
+          params,
           socket: this,
         });
       }
@@ -49,13 +59,6 @@ function runWsServer() {
     ws.onerror = () => {};
     ws.onopen = () => {};
   });
-
-  app.get('/', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.sendFile(path.join(__dirname, 'index.html'));
-  });
-
-  app.listen(3002, () => console.log('listening on http://localhost:3002/'));
 }
 
 if (!module.parent) {
