@@ -4,6 +4,7 @@ let app = new Vue({
     return {
       configs: [],
       currConfig: {},
+      socketServers: [],
     };
   },
   mounted() {
@@ -20,85 +21,65 @@ let app = new Vue({
     isCurrentConfig: function(name) {
       return _.get(this.currConfig, 'name') === name;
     },
+
     showConfigs: function() {
       console.log(this.configs);
       console.log(this.currConfig);
     },
-    runConfig: function(name) {
-      _.forEach(this.configs, (val, key) => {
-        if (key === name) {
-          Vue.set(this.configs[key], 'isConnected', true);
-          Vue.set(this.configs[key], 'socket', this.startSocket());
-        }
-      });
+
+    runConfig: async function(name) {
+      const config = _.get(this.configs, name);
+      const ppdConfig = _.get(this.configs, [name, 'ppdConfig']);
+      if (!ppdConfig || config.socket) {
+        //TODO: 2019-06-10 S.Starodubov ERROR
+        return;
+      }
+      ppdConfig.name = name;
+      const socket = await this.startSocket({ config, ppdConfig });
+      Vue.set(this.configs[name], 'isConnected', socket ? true : false);
+      Vue.set(this.configs[name], 'socket', socket);
     },
+
     selectConfig: function(name) {
       let config = _(this.configs).find(v => v.name === name);
       if (config) {
         this.currConfig = config;
       }
     },
-    onMessageSocket: function(event) {
-      let data = jsyaml.load(event.data);
-      console.log(data);
-    },
-    onOpenSocket: function(event) {
-      console.log(event, 'websocket connection open');
-    },
-    onErrorSocket: function(event) {
-      console.log(event, 'error');
-    },
-    onCloseSocket: function(event) {
-      console.log(event, 'close');
-    },
-    startSocket: function() {
-      let socket = new WebSocket(`ws://127.0.0.1:3001/`);
-      socket.onerror = this.onErrorSocket;
-      socket.onopen = this.onOpenSocket;
-      socket.onmessage = this.onMessageSocket;
-      socket.onclose = this.onCloseSocket;
+
+    startSocket: function({ config, ppdConfig, server = '127.0.0.1:3001' } = {}) {
+      let self = this;
+      let socket = new WebSocket(`ws://${server}/`);
+      socket.onerror = function(event) {
+        console.log(event, 'error');
+      };
+      socket.onopen = function(event) {
+        console.log(event, 'websocket connection open');
+        socket.send(JSON.stringify({ args: ppdConfig, method: 'initEnv' }));
+      };
+      socket.onmessage = function(event) {
+        let data = jsyaml.load(event.data);
+        if (data.type === 'initEnv') {
+          Vue.set(self.configs[config.name], 'envsId', data.envsId);
+        }
+        console.log(data);
+      };
+      socket.onclose = function(event) {
+        console.log(event, 'close');
+      };
       return socket;
     },
 
-    runTest: function(config) {
-      //TODO: 2019-05-20 S.Starodubov ошибку кинуть
+    sendSocket: function(config, method) {
       if (!config.socket) {
         console.log('Run socket connection first');
         return;
       }
-      config.socket.send(
-        JSON.stringify({
-          message: 'run_test',
-          args: config.ppd_config,
-        }),
-      );
-    },
-
-    fetchStruct: function(config) {
-      //TODO: 2019-05-20 S.Starodubov ошибку кинуть
-      if (!config.socket) {
-        console.log('Run socket connection first');
+      if (!method) {
+        console.log(`Unknown method: ${method}`);
         return;
       }
-      config.socket.send(
-        JSON.stringify({
-          message: 'fetch_struct',
-          args: config.ppd_config,
-        }),
-      );
-    },
-    fetchAvailableTests: function(config) {
-      //TODO: 2019-05-20 S.Starodubov ошибку кинуть
-      if (!config.socket) {
-        console.log('Run socket connection first');
-        return;
-      }
-      config.socket.send(
-        JSON.stringify({
-          message: 'fetch_available_tests',
-          args: config.ppd_config,
-        }),
-      );
+      config.socket.send(JSON.stringify({ args: config.ppdConfig, method, envsId: config.envsId }));
     },
   },
 });

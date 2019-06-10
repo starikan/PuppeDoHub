@@ -1,7 +1,7 @@
 ---
 main:
   name: main
-  ppd_config:
+  ppdConfig:
     output: 'output'
     envs: 'envElectron'
     testsFolder: '.'
@@ -17,7 +17,7 @@ main:
     selectorsExt: ''
 electron:
   name: electron
-  ppd_config:
+  ppdConfig:
     output: 'output'
     envs: ["settings/envElectron.yaml"]
     testsFolder: 'P:\DEV\PuppeDo_tests'

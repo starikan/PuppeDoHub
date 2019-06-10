@@ -31,49 +31,49 @@
         <h4>{{currConfig.name}}</h4>
         <p>{{currConfig.isConnected}}</p>
         <label for="output">output</label>
-        <input type="text" name="output" v-model="currConfig.ppd_config.output"/>
+        <input type="text" name="output" v-model="currConfig.ppdConfig.output"/>
         <br />
         <label for="envs">envs</label>
-        <input type="text" name="envs" v-model="currConfig.ppd_config.envs"/>
+        <input type="text" name="envs" v-model="currConfig.ppdConfig.envs"/>
         <br />
         <label for="testsFolder">testsFolder</label>
-        <input type="text" name="testsFolder" v-model="currConfig.ppd_config.testsFolder"/>
+        <input type="text" name="testsFolder" v-model="currConfig.ppdConfig.testsFolder"/>
         <br />
         <label for="envsExt">envsExt</label>
-        <input type="text" name="envsExt" v-model="currConfig.ppd_config.envsExt"/>
+        <input type="text" name="envsExt" v-model="currConfig.ppdConfig.envsExt"/>
         <br />
         <label for="envsExtJson">envsExtJson</label>
-        <input type="text" name="envsExtJson" v-model="currConfig.ppd_config.envsExtJson"/>
+        <input type="text" name="envsExtJson" v-model="currConfig.ppdConfig.envsExtJson"/>
         <br />
         <label for="data">data</label>
-        <input type="text" name="data" v-model="currConfig.ppd_config.data"/>
+        <input type="text" name="data" v-model="currConfig.ppdConfig.data"/>
         <br />
         <label for="selectors">selectors</label>
-        <input type="text" name="selectors" v-model="currConfig.ppd_config.selectors"/>
+        <input type="text" name="selectors" v-model="currConfig.ppdConfig.selectors"/>
         <br />
         <label for="debugMode">debugMode</label>
-        <input type="text" name="debugMode" v-model="currConfig.ppd_config.debugMode"/>
+        <input type="text" name="debugMode" v-model="currConfig.ppdConfig.debugMode"/>
         <br />
         <label for="logDisabled">logDisabled</label>
-        <input type="text" name="logDisabled" v-model="currConfig.ppd_config.logDisabled"/>
+        <input type="text" name="logDisabled" v-model="currConfig.ppdConfig.logDisabled"/>
         <br />
         <label for="testsList">testsList</label>
-        <input type="text" name="testsList" v-model="currConfig.ppd_config.testsList"/>
+        <input type="text" name="testsList" v-model="currConfig.ppdConfig.testsList"/>
         <br />
         <label for="test">test</label>
-        <input type="text" name="test" v-model="currConfig.ppd_config.test"/>
+        <input type="text" name="test" v-model="currConfig.ppdConfig.test"/>
         <br />
         <label for="dataExt">dataExt</label>
-        <input type="text" name="dataExt" v-model="currConfig.ppd_config.dataExt"/>
+        <input type="text" name="dataExt" v-model="currConfig.ppdConfig.dataExt"/>
         <br />
         <label for="selectorsExt">selectorsExt</label>
-        <input type="text" name="selectorsExt" v-model="currConfig.ppd_config.selectorsExt"/>
+        <input type="text" name="selectorsExt" v-model="currConfig.ppdConfig.selectorsExt"/>
         <br />
       </form>
 
-      <button @click='runTest(currConfig)'>Запустить Тесты</button>
-      <button @click='fetchStruct(currConfig)'>Получить структуру</button>
-      <button @click='fetchAvailableTests(currConfig)'>Получить все доступные тесты</button>
+      <button @click='sendSocket(currConfig, "runTest")'>Запустить Тесты</button>
+      <button @click='sendSocket(currConfig, "fetchStruct")'>Получить структуру</button>
+      <button @click='sendSocket(currConfig, "fetchAvailableTests")'>Получить все доступные тесты</button>
     </div>
 
     <!-- <div class="wrapper"> -->
