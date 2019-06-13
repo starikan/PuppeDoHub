@@ -14,60 +14,69 @@
 
   <body>
     <div id="main" v-cloak>
+      <div id="servers">
+        <p v-for="(server, key) in servers">
+          <span>{{ server.host }}:{{ server.port }} {{server.socket ? 'Соединен' : 'Отключен'}}</span>
+          <button v-on:click="startSocket(key, server)">Соединиться с сервером</button>
+        </p>
+      </div>
+
+      <hr />
+
       <div id="configs">
+        Конфиги
         <p v-for="config in configs">
           <button @click="selectConfig(config.name)">Выбрать {{ config.name }}</button>
           <span class="config_status">Конфиг запущен {{ config.isConnected ? 'да' : 'нет' }}</span>
           <span v-if="isCurrentConfig(config.name)">Выбран</span>
-          <button v-on:click="runConfig(config.name)">Запустить конфиг</button>
+          <!-- <button v-on:click="runConfig(config.name)">Получить конфиг</button> -->
+          <button v-on:click="sendSocket(config, 'runEnv')">Запустить конфиг</button>
         </p>
       </div>
-
-      <button v-on:click="showConfigs()">Консоль конфиги</button>
 
       <hr />
 
       <form action="" v-if="currConfig.name">
-        <h4>{{currConfig.name}}</h4>
-        <p>{{currConfig.isConnected}}</p>
+        <h4>{{ currConfig.name }}</h4>
+        <p>{{ currConfig.isConnected }}</p>
         <label for="output">output</label>
-        <input type="text" name="output" v-model="currConfig.ppdConfig.output"/>
+        <input type="text" name="output" v-model="currConfig.ppdConfig.output" />
         <br />
         <label for="envs">envs</label>
-        <input type="text" name="envs" v-model="currConfig.ppdConfig.envs"/>
+        <input type="text" name="envs" v-model="currConfig.ppdConfig.envs" />
         <br />
         <label for="testsFolder">testsFolder</label>
-        <input type="text" name="testsFolder" v-model="currConfig.ppdConfig.testsFolder"/>
+        <input type="text" name="testsFolder" v-model="currConfig.ppdConfig.testsFolder" />
         <br />
         <label for="envsExt">envsExt</label>
-        <input type="text" name="envsExt" v-model="currConfig.ppdConfig.envsExt"/>
+        <input type="text" name="envsExt" v-model="currConfig.ppdConfig.envsExt" />
         <br />
         <label for="envsExtJson">envsExtJson</label>
-        <input type="text" name="envsExtJson" v-model="currConfig.ppdConfig.envsExtJson"/>
+        <input type="text" name="envsExtJson" v-model="currConfig.ppdConfig.envsExtJson" />
         <br />
         <label for="data">data</label>
-        <input type="text" name="data" v-model="currConfig.ppdConfig.data"/>
+        <input type="text" name="data" v-model="currConfig.ppdConfig.data" />
         <br />
         <label for="selectors">selectors</label>
-        <input type="text" name="selectors" v-model="currConfig.ppdConfig.selectors"/>
+        <input type="text" name="selectors" v-model="currConfig.ppdConfig.selectors" />
         <br />
         <label for="debugMode">debugMode</label>
-        <input type="text" name="debugMode" v-model="currConfig.ppdConfig.debugMode"/>
+        <input type="text" name="debugMode" v-model="currConfig.ppdConfig.debugMode" />
         <br />
         <label for="logDisabled">logDisabled</label>
-        <input type="text" name="logDisabled" v-model="currConfig.ppdConfig.logDisabled"/>
+        <input type="text" name="logDisabled" v-model="currConfig.ppdConfig.logDisabled" />
         <br />
         <label for="testsList">testsList</label>
-        <input type="text" name="testsList" v-model="currConfig.ppdConfig.testsList"/>
+        <input type="text" name="testsList" v-model="currConfig.ppdConfig.testsList" />
         <br />
         <label for="test">test</label>
-        <input type="text" name="test" v-model="currConfig.ppdConfig.test"/>
+        <input type="text" name="test" v-model="currConfig.ppdConfig.test" />
         <br />
         <label for="dataExt">dataExt</label>
-        <input type="text" name="dataExt" v-model="currConfig.ppdConfig.dataExt"/>
+        <input type="text" name="dataExt" v-model="currConfig.ppdConfig.dataExt" />
         <br />
         <label for="selectorsExt">selectorsExt</label>
-        <input type="text" name="selectorsExt" v-model="currConfig.ppdConfig.selectorsExt"/>
+        <input type="text" name="selectorsExt" v-model="currConfig.ppdConfig.selectorsExt" />
         <br />
       </form>
 

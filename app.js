@@ -11,5 +11,5 @@ function runWsServer() {
   app.listen(3002, () => console.log('listening on http://localhost:3002/'));
 }
 
-const wss = ppd.createSocketServer();
+const wss = ppd.runPPDSocketServer();
 runWsServer();
