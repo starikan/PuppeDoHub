@@ -4,117 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@3.13.1/dist/js-yaml.min.js"></script>
-
-    <link rel="stylesheet" href="styles.css" />
-    <title></title>
+    <title>Vue Parcel</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
-
   <body>
-    <div id="main" v-cloak>
-      <div id="servers">
-        <p v-for="(server, key) in servers">
-          <span>{{ server.host }}:{{ server.port }} {{server.socket ? 'Соединен' : 'Отключен'}}</span>
-          <button v-on:click="startSocket(key, server)">Соединиться с сервером</button>
-        </p>
-      </div>
+    <div id="app"></div>
 
-      <hr />
-
-      <div id="configs">
-        Конфиги
-        <p v-for="config in configs">
-          <button @click="selectConfig(config.name)">Выбрать {{ config.name }}</button>
-          <span class="config_status">Конфиг запущен {{ config.isConnected ? 'да' : 'нет' }}</span>
-          <span v-if="isCurrentConfig(config.name)">Выбран</span>
-          <!-- <button v-on:click="runConfig(config.name)">Получить конфиг</button> -->
-          <button v-on:click="sendSocket(config, 'runEnv')">Запустить конфиг</button>
-        </p>
-      </div>
-
-      <hr />
-
-      <form action="" v-if="currConfig.name">
-        <h4>{{ currConfig.name }}</h4>
-        <p>{{ currConfig.isConnected }}</p>
-        <label for="output">output</label>
-        <input type="text" name="output" v-model="currConfig.ppdConfig.output" />
-        <br />
-        <label for="envs">envs</label>
-        <input type="text" name="envs" v-model="currConfig.ppdConfig.envs" />
-        <br />
-        <label for="testsFolder">testsFolder</label>
-        <input type="text" name="testsFolder" v-model="currConfig.ppdConfig.testsFolder" />
-        <br />
-        <label for="envsExt">envsExt</label>
-        <input type="text" name="envsExt" v-model="currConfig.ppdConfig.envsExt" />
-        <br />
-        <label for="envsExtJson">envsExtJson</label>
-        <input type="text" name="envsExtJson" v-model="currConfig.ppdConfig.envsExtJson" />
-        <br />
-        <label for="data">data</label>
-        <input type="text" name="data" v-model="currConfig.ppdConfig.data" />
-        <br />
-        <label for="selectors">selectors</label>
-        <input type="text" name="selectors" v-model="currConfig.ppdConfig.selectors" />
-        <br />
-        <label for="debugMode">debugMode</label>
-        <input type="text" name="debugMode" v-model="currConfig.ppdConfig.debugMode" />
-        <br />
-        <label for="logDisabled">logDisabled</label>
-        <input type="text" name="logDisabled" v-model="currConfig.ppdConfig.logDisabled" />
-        <br />
-        <label for="testsList">testsList</label>
-        <input type="text" name="testsList" v-model="currConfig.ppdConfig.testsList" />
-        <br />
-        <label for="test">test</label>
-        <input type="text" name="test" v-model="currConfig.ppdConfig.test" />
-        <br />
-        <label for="dataExt">dataExt</label>
-        <input type="text" name="dataExt" v-model="currConfig.ppdConfig.dataExt" />
-        <br />
-        <label for="selectorsExt">selectorsExt</label>
-        <input type="text" name="selectorsExt" v-model="currConfig.ppdConfig.selectorsExt" />
-        <br />
-      </form>
-
-      <button @click='sendSocket(currConfig, "runTest")'>Запустить Тесты</button>
-      <button @click='sendSocket(currConfig, "fetchStruct")'>Получить структуру</button>
-      <button @click='sendSocket(currConfig, "fetchAvailableTests")'>Получить все доступные тесты</button>
-    </div>
-
-    <!-- <div class="wrapper"> -->
-
-    <!-- <div class="header">HEADER</div>
-
-    <div class="testLists">
-      TEST LISTS
-      <button onclick="init_test()">Старт теста</button>
-      <button onclick="get_json()">Получить тесты</button>
-    </div> -->
-    <!-- <div class="testData">TEST DATA</div> -->
-    <!-- <div class="testFlow">
-      TEST FLOW<br>
-      <button onclick="getAllSockets()">Получить все сокеты</button><br>
-      <button onclick="socket_connect()">Запустить сокет</button><br>
-      <button onclick="init_test()">Инициировать тест</button><br>
-      <button onclick="get_test()">Получить данные теста</button><br>
-    </div>
-    <div class="testDetails">
-      <div class="compiledData">COMPILED DATA</div>
-      <div class="compiledSelectors">COMPILED SELECTORS</div>
-    </div>
-
-    <div class="footer">FOOTER</div> -->
-    <!-- </div> -->
-    <!-- <input type="text"/> -->
-    <!-- <button onclick="init_test()">Старт теста</button>
-  <button onclick="get_json()">Получить JSON</button> -->
-    <!-- <button onclick="init_test2()">Старт теста2</button> -->
-    <!-- <button onclick="stop_test()">Стоп теста</button>
-  <button onclick="stop_test2()">Стоп теста2</button> -->
+    <!-- built files will be auto injected -->
+    <script src="./src/main.js"></script>
   </body>
-  <script src="sockets.js"></script>
 </html>

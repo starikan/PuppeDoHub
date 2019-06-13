@@ -4,7 +4,12 @@
   "description": "Hub for PuppeDo",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel index.html",
+    "watch": "parcel watch index.html",
+    "production": "parcel build index.html"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +18,17 @@
     "express": "4.16.4",
     "js-yaml": "^3.13.1",
     "lodash": "4.17.11",
+    "vue": "^2.6.10",
+    "vue-hot-reload-api": "^2.3.3",
+    "vuex": "^3.1.1",
     "ws": "6.1.0"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "parcel-bundler": "^1.12.3",
+    "pug": "^2.0.3",
+    "stylus": "^0.54.5",
+    "typescript": "^3.5.1",
+    "vue-template-compiler": "^2.6.10"
   }
 }
