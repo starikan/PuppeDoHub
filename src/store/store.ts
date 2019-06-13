@@ -19,4 +19,4 @@ const store = new Vuex.Store({
   },
 });
 
-module.exports = store;
+export default store;
