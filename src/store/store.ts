@@ -2,13 +2,45 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+const ppd = {
+  namespaced: true,
+  state: {
+    servers: {
+      local: {
+        host: '127.0.0.1',
+        port: '3001',
+      },
+    },
+  },
+  mutations: {},
+  getters: {},
+  actions: {},
+};
 
-//TODO: 2019-06-13 S.Starodubov Modules
-// State machite view
-// PPD
-// Local data
+const viewState = {
+  namespaced: true,
+  state: {},
+  mutations: {},
+  getters: {},
+  actions: {},
+};
+
+const localStorage = {
+  namespaced: true,
+  state: {
+    isLocalPPDRunnable: true,
+  },
+  mutations: {},
+  getters: {},
+  actions: {},
+};
 
 const store = new Vuex.Store({
+  modules: {
+    ppd,
+    viewState,
+    localStorage,
+  },
   state: {
     count: 10,
   },

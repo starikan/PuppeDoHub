@@ -18,16 +18,11 @@ import Panel from "./components/Panel.vue";
 export default {
   name: "App",
   components: { Header, Footer, LeftMenu, Panel },
-  computed: {
-    getCount() {
-      return this.$store.state.count;
-    }
-  }
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 .main {
   display: grid;
   grid-template:
@@ -37,7 +32,7 @@ export default {
     250px 1fr;
   min-height: 100vh;
   background-color: #585858;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .panel {
   color: #ffffff;
