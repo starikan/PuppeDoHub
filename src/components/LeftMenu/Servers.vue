@@ -1,7 +1,8 @@
 <template>
   <div>
     Servers
-    <li v-for="(server, name) in servers" :key="name">{{name}}</li>
+    <li v-for="(server, index) in servers" :key="index">{{server.name}}</li>
+    {{servers}}
     <hr>
   </div>
 </template>

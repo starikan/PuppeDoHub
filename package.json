@@ -14,21 +14,26 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.134",
+    "@types/store": "^2.0.2",
     "PuppeDo": "file:P:/DEV/PuppeDo",
-    "express": "4.16.4",
+    "deepmerge": "^3.2.0",
+    "express": "4.17.1",
     "js-yaml": "^3.13.1",
     "lodash": "4.17.11",
+    "shortid": "^2.2.14",
+    "store2": "^2.7.1",
     "vue": "^2.6.10",
     "vue-hot-reload-api": "^2.3.3",
     "vuex": "^3.1.1",
-    "ws": "6.1.0"
+    "ws": "7.0.0"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
     "parcel-bundler": "^1.12.3",
     "pug": "^2.0.3",
     "stylus": "^0.54.5",
-    "typescript": "^3.5.1",
+    "typescript": "^3.5.2",
     "vue-template-compiler": "^2.6.10"
   }
 }
