@@ -12,7 +12,7 @@
     "PuppeDo": "file:P:/DEV/PuppeDo",
     "express": "4.16.4",
     "js-yaml": "^3.13.1",
-    "lodash": "4.17.11",
+    "lodash": "4.17.15",
     "ws": "6.1.0"
   }
 }
