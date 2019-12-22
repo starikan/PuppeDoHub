@@ -1,4 +1,4 @@
-const ppd = require('PuppeDo');
+const ppd = require('@puppedo/core');
 
 const _ = require('lodash');
 const WebSocket = require('ws');
