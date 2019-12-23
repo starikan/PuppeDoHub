@@ -1,18 +1,39 @@
 {
-  "name": "@puppedo/hub",
+  "name": "puppedohub",
   "version": "1.0.0",
   "description": "Hub for PuppeDo",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"No test specified\""
+    "dev": "parcel index.html",
+    "watch": "parcel watch index.html",
+    "production": "parcel build index.html"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/store": "^2.0.2",
     "@puppedo/core": "latest",
+    "deepmerge": "^4.2.2",
     "express": "4.17.1",
     "js-yaml": "^3.13.1",
     "lodash": "4.17.15",
+    "shortid": "^2.2.15",
+    "store2": "^2.10.0",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4",
+    "vuex": "^3.1.2",
     "ws": "7.2.1"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.0",
+    "parcel-bundler": "^1.12.4",
+    "pug": "^2.0.4",
+    "stylus": "^0.54.7",
+    "typescript": "^3.7.4",
+    "vue-template-compiler": "^2.6.11"
   }
 }

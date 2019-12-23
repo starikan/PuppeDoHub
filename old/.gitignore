@@ -5,5 +5,3 @@ output
 package-lock.json
 settings
 yarn.lock
-/.cache
-/dist
