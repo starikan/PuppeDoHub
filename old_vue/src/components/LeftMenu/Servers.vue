@@ -12,6 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { createNamespacedHelpers, mapState, mapActions } from 'vuex';
+import ModalServerConfig from "../Modals/ModalServerConfig.vue";
 // const { mapState, mapActions } = createNamespacedHelpers('servers');
 export default Vue.extend({
   name: 'Servers',
@@ -21,6 +22,7 @@ export default Vue.extend({
   methods: {
     addServer: () => {
       console.log('addServer');
+      ModalServerConfig.show()
     },
   },
 });

@@ -4,6 +4,7 @@
     <LeftMenu id="LeftMenu" class="panel"></LeftMenu>
     <Panel id="Panel" class="panel"></Panel>
     <Footer id="Footer" class="panel"></Footer>
+    <ModalServerConfig></ModalServerConfig>
   </div>
 </template>
 
@@ -13,10 +14,11 @@ import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import LeftMenu from "./components/LeftMenu.vue";
 import Panel from "./components/Panel.vue";
+import ModalServerConfig from "./components/Modals/ModalServerConfig.vue";
 
 export default {
   name: "App",
-  components: { Header, Footer, LeftMenu, Panel },
+  components: { Header, Footer, LeftMenu, Panel, ModalServerConfig },
 };
 </script>
 
