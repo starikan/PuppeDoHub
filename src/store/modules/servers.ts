@@ -1,6 +1,6 @@
 import * as lstore from 'store2';
 import _mut from '../_mut';
-import { initVals } from './states_init/ppd';
+import initVals from './states_init/servers';
 
 let state = {
   servers: {},

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import ppd from './modules/ppd';
+import servers from './modules/servers';
 import viewState from './modules/viewState';
 import modulesHooks from './plugins/hooks_plugin';
 
@@ -9,7 +9,7 @@ Vue.use(Vuex);
 const vuexData = {
   // strict: process.env.NODE_ENV !== 'production',
   modules: {
-    ppd,
+    servers,
     viewState,
   },
   plugins: [modulesHooks],

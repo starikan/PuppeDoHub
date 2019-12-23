@@ -1,9 +1,9 @@
 <template>
   <div>
     <Servers></Servers>
-    <Configs></Configs>
-    <Instances></Instances>
-    <Tests></Tests>
+    <!-- <Configs></Configs> -->
+    <!-- <Instances></Instances> -->
+    <!-- <Tests></Tests> -->
   </div>
 </template>
 
