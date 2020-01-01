@@ -1,21 +1,31 @@
 const state = {};
-let output;
+let output, websocket;
+
+const args = {
+  PPD_ROOT: 'tests',
+  PPD_ENVS: 'mainEnv',
+  PPD_TESTS: 'main',
+  PPD_DEBUG_MODE: 'true',
+};
 
 function init() {
-  testWebSocket('ws://127.0.0.1:3001/');
   output = document.getElementById('output');
 
-  const runServer = document.getElementById('runServer');
-  runServer.addEventListener('click', runServerClick);
+  document.getElementById('runServer').addEventListener('click', runServerClick);
+  document.getElementById('argsInit').addEventListener('click', argsInitClick);
 }
 
 async function runServerClick(event) {
-  console.log(event);
-  writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  testWebSocket('ws://127.0.0.1:3001/');
+}
+
+async function argsInitClick(event) {
+  const data = JSON.stringify({ data: args, method: 'argsInit' });
+  doSend(data);
 }
 
 function testWebSocket(wsUri) {
-  const websocket = new WebSocket(wsUri);
+  websocket = new WebSocket(wsUri);
   websocket.onopen = function(evt) {
     onOpen(evt);
   };
@@ -32,7 +42,6 @@ function testWebSocket(wsUri) {
 
 function onOpen(evt) {
   writeToScreen('CONNECTED');
-  doSend('WebSocket rocks');
 }
 
 function onClose(evt) {
