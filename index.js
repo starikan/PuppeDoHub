@@ -8,6 +8,7 @@ function init() {
   document.getElementById('getAllTestsData').addEventListener('click', getAllTestsDataClick);
   document.getElementById('createEnvs').addEventListener('click', createEnvsClick);
   document.getElementById('setCurrentTest').addEventListener('click', setCurrentTestClick);
+  document.getElementById('runCurrentTest').addEventListener('click', runCurrentTestClick);
 }
 window.addEventListener('load', init);
 
@@ -76,6 +77,12 @@ async function createEnvsClick(event) {
 
 async function setCurrentTestClick(event) {
   const data = JSON.stringify({ data: { testName: 'main' }, method: 'setCurrentTest', envsId: envsIdServer });
+  writeToScreen('SENT: ' + data);
+  websocket.send(data);
+}
+
+async function runCurrentTestClick(event) {
+  const data = JSON.stringify({ method: 'runCurrentTest', envsId: envsIdServer });
   writeToScreen('SENT: ' + data);
   websocket.send(data);
 }
