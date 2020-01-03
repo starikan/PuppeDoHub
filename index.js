@@ -4,11 +4,12 @@ let websocket;
 function init() {
   document.getElementById('runServer').addEventListener('click', runServerClick);
   document.getElementById('argsInit').addEventListener('click', argsInitClick);
+  document.getElementById('getAllTestsData').addEventListener('click', getAllTestsDataClick);
 }
 window.addEventListener('load', init);
 
 function writeToScreen(message) {
-  const pre = document.createElement('p');
+  const pre = document.createElement('pre');
   pre.style.wordWrap = 'break-word';
   pre.innerHTML = message;
 
@@ -47,6 +48,12 @@ async function argsInitClick(event) {
   };
 
   const data = JSON.stringify({ data: args, method: 'argsInit' });
+  writeToScreen('SENT: ' + data);
+  websocket.send(data);
+}
+
+async function getAllTestsDataClick(event) {
+  const data = JSON.stringify({ method: 'getAllTestsData' });
   writeToScreen('SENT: ' + data);
   websocket.send(data);
 }
