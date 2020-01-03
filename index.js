@@ -7,6 +7,7 @@ function init() {
   document.getElementById('argsInit').addEventListener('click', argsInitClick);
   document.getElementById('getAllTestsData').addEventListener('click', getAllTestsDataClick);
   document.getElementById('createEnvs').addEventListener('click', createEnvsClick);
+  document.getElementById('setCurrentTest').addEventListener('click', setCurrentTestClick);
 }
 window.addEventListener('load', init);
 
@@ -31,7 +32,7 @@ async function runServerClick(event) {
       writeToScreen('DISCONNECTED');
     };
     websocket.onmessage = function(evt) {
-      const { data, type, envsId } = jsyaml.load(evt.data);
+      const { data, type, envsId } = jsyaml.safeLoad(evt.data, { skipInvalid: true });
       envsIdServer = envsId;
       console.log(data, type, envsId);
       if (type === 'error') {
@@ -69,6 +70,12 @@ async function getAllTestsDataClick(event) {
 
 async function createEnvsClick(event) {
   const data = JSON.stringify({ method: 'createEnvs', envsId: envsIdServer });
+  writeToScreen('SENT: ' + data);
+  websocket.send(data);
+}
+
+async function setCurrentTestClick(event) {
+  const data = JSON.stringify({ data: { testName: 'main' }, method: 'setCurrentTest', envsId: envsIdServer });
   writeToScreen('SENT: ' + data);
   websocket.send(data);
 }
