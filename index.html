@@ -9,10 +9,16 @@
       height: 80vh;
       overflow-y: auto;
     }
+
   </style>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"
+          crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+          crossorigin></script>
 </head>
 
 <body>
+  <div id="like_button_container"></div>
   <h2>WebSocket Test</h2>
   <button id="runServer">runServer</button>
   <button id="argsInit">argsInit</button>
@@ -21,6 +27,7 @@
   <button id="setCurrentTest">setCurrentTest</button>
   <button id="runCurrentTest">runCurrentTest</button>
   <div id="output"></div>
+  <script src="react_test.js"></script>
   <script src="index.js"></script>
 </body>
 
