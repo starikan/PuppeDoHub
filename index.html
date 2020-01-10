@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <title>WebSocket Test</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.13.1/js-yaml.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     #output {
       height: 80vh;
@@ -11,23 +14,15 @@
     }
 
   </style>
-  <script src="https://unpkg.com/react@16/umd/react.development.js"
-          crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-          crossorigin></script>
 </head>
 
 <body>
-  <div id="like_button_container"></div>
+  <!-- <div id="like_button_container"></div> -->
   <h2>WebSocket Test</h2>
-  <button id="runServer">runServer</button>
-  <button id="argsInit">argsInit</button>
-  <button id="getAllTestsData">getAllTestsData</button>
-  <button id="createEnvs">createEnvs</button>
-  <button id="setCurrentTest">setCurrentTest</button>
-  <button id="runCurrentTest">runCurrentTest</button>
+  <div id="root"></div>
   <div id="output"></div>
-  <script src="react_test.js"></script>
+  <script type="text/babel"
+          src="react_test.js"></script>
   <script src="index.js"></script>
 </body>
 
