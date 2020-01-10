@@ -1,24 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-const App: React.FC<{ ddd: string }> = ({ ddd }) => {
-  const styles: { [key: string]: string } = {
+type MyProps = { test: string };
+type MyState = { buttons: Array<{ id: string; name: string }> };
+
+class App extends React.Component<MyProps, MyState> {
+  styles: { [key: string]: string } = {
     border: '2px solid red',
   };
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" style={styles} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+
+  state: MyState = {
+    buttons: [
+      { id: 'runServer', name: 'runServer' },
+      { id: 'argsInit', name: 'argsInit' },
+      { id: 'getAllTestsData', name: 'getAllTestsData' },
+      { id: 'createEnvs', name: 'createEnvs' },
+      { id: 'setCurrentTest', name: 'setCurrentTest' },
+      { id: 'runCurrentTest', name: 'runCurrentTest' },
+    ],
+  };
+
+  render() {
+    return (
+      <div className="App">
+        {/* {this.props.test}
+        {this.props.children} */}
+        <button id={this.state.buttons[0].id}>{this.state.buttons[0].name}</button>
+        <button id={this.state.buttons[1].id}>{this.state.buttons[1].name}</button>
+        <button id={this.state.buttons[2].id}>{this.state.buttons[2].name}</button>
+        <button id={this.state.buttons[3].id}>{this.state.buttons[3].name}</button>
+        <button id={this.state.buttons[4].id}>{this.state.buttons[4].name}</button>
+        <button id={this.state.buttons[5].id}>{this.state.buttons[5].name}</button>
+      </div>
+    );
+  }
+}
 
 export default App;
