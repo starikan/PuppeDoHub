@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
 
 type MyProps = {};
 type MyState = { buttons: TButton[] };
 
 type TButton = { id: string; name: string };
 
-class App extends React.Component<MyProps, MyState> {
+export default class Buttons extends React.Component<MyProps, MyState> {
   styles: React.CSSProperties = {
     border: '2px solid red',
   };
@@ -28,8 +27,7 @@ class App extends React.Component<MyProps, MyState> {
 
   render() {
     return (
-      <div className="App">
-        PuppeDo
+      <div>
         {this.state.buttons.map((v) => {
           return (
             <button id={v.id} onClick={this.clickButtonHandler.bind(null, v)}>
@@ -41,5 +39,3 @@ class App extends React.Component<MyProps, MyState> {
     );
   }
 }
-
-export default App;
