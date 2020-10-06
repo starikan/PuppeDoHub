@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
 
-type MyProps = { test: string };
-type MyState = { buttons: Array<{ id: string; name: string }> };
+type MyProps = {};
+type MyState = { buttons: TButton[] };
+
+type TButton = { id: string; name: string };
 
 class App extends React.Component<MyProps, MyState> {
-  styles: { [key: string]: string } = {
+  styles: React.CSSProperties = {
     border: '2px solid red',
   };
 
@@ -20,17 +22,21 @@ class App extends React.Component<MyProps, MyState> {
     ],
   };
 
+  clickButtonHandler = (v: TButton) => {
+    console.log(v.id);
+  };
+
   render() {
     return (
       <div className="App">
-        {/* {this.props.test}
-        {this.props.children} */}
-        <button id={this.state.buttons[0].id}>{this.state.buttons[0].name}</button>
-        <button id={this.state.buttons[1].id}>{this.state.buttons[1].name}</button>
-        <button id={this.state.buttons[2].id}>{this.state.buttons[2].name}</button>
-        <button id={this.state.buttons[3].id}>{this.state.buttons[3].name}</button>
-        <button id={this.state.buttons[4].id}>{this.state.buttons[4].name}</button>
-        <button id={this.state.buttons[5].id}>{this.state.buttons[5].name}</button>
+        PuppeDo
+        {this.state.buttons.map((v) => {
+          return (
+            <button id={v.id} onClick={this.clickButtonHandler.bind(null, v)}>
+              {v.name}
+            </button>
+          );
+        })}
       </div>
     );
   }
