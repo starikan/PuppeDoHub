@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ArgsForm from './ArgsForm';
 import Buttons from './Buttons/Buttons';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -10,6 +11,7 @@ class App extends React.Component {
       <div className="App">
         PuppeDo
         <Buttons></Buttons>
+        <ArgsForm></ArgsForm>
       </div>
     );
   }
