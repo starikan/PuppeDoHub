@@ -4,6 +4,7 @@ import ArgsForm from './ArgsForm';
 import Buttons from './Buttons/Buttons';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { WebSocketDemo } from './WebSocketDemo.jsx';
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
         PuppeDo
         <Buttons></Buttons>
         <ArgsForm></ArgsForm>
+        <WebSocketDemo></WebSocketDemo>
       </div>
     );
   }
