@@ -4,6 +4,7 @@ import ArgsForm from './ArgsForm';
 import Buttons from './Buttons/Buttons';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import Tree from './Tree/Tree';
 import { WebSocketDemo } from './WebSocketDemo.jsx';
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
         <Buttons></Buttons>
         <ArgsForm></ArgsForm>
         <WebSocketDemo></WebSocketDemo>
+        <Tree></Tree>
       </div>
     );
   }
